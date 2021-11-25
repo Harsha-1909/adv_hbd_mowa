@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Mowa's Kingdom</title>
+  </head>
+  <style media="screen">
+  :root {
+ --bear: #5d4037;
+ --leaf: #432f29;
+ --green: #74875d;
+ --flower: wheat;
+ --fox: #bf360c;
+ --cloud-base: 4vw;
+ --bear-base: 3vw;
+ --cat-base: 6vw;
+ --apple-base: 2.5vw;
+ --mushroom-base: 3vw;
+ --deer-base: 3.25vw;
+ --fox-base: 3vw;
+ --wolf-base: 4.5vw;
+ --flower-base: 2.5vw;
+ --bird-base: 4vw;
+ --pine-base: 1.5vw;
+ --sq-base: 4vw;
+ --light: wheat;
+ --white: white;
+}
+body {
+ background: wheat;
+ margin: 0;
+ align-items: center;
+ height: 100vh;
+}
+.featured {
+ margin: 2rem 0;
+ pointer-events: none;
+ list-style: none;
+ display: grid;
+ grid-gap: 1vw;
+ grid-template-columns: repeat(5, 1fr);
+}
+.featured li {
+ border: 2px solid var(--fox);
+ height: 20vw;
+ position: relative;
+ transform-origin: center center;
+ transition: transform 1s, border 0.3s 0.5s;
+}
+.featured div {
+ position: absolute;
+ left: 50%;
+ top: 50%;
+}
+.featured div:before, .featured div:after {
+ content: "";
+ position: absolute;
+}
+*, *:before, *:after {
+ box-sizing: border-box;
+}
+.bird {
+ margin-left: var(--bird-base);
+ color: var(--leaf);
+ width: var(--bird-base);
+ height: var(--bird-base);
+ border-radius: 50% 50% calc(0.25 * var(--bird-base)) calc(0.25 * var(--bird-base));
+ background: currentcolor;
+ box-shadow: calc(0.5 * var(--bird-base)) calc(1.4 * var(--bird-base)) 0 calc(0.5 * var(--bird-base)) currentcolor;
+}
+.bird:after {
+ left: calc(0.3 * var(--bird-base));
+ width: calc(0.4 * var(--bird-base));
+ height: calc(0.4 * var(--bird-base));
+ border-radius: 50%;
+ top: calc(0.3 * var(--bird-base));
+ border: calc(0.1 * var(--bird-base)) solid var(--light);
+}
+.bird:before {
+ left: calc(-0.25 * var(--bird-base));
+ top: calc(0.3 * var(--bird-base));
+ border-left: calc(0.25 * var(--bird-base)) solid transparent;
+ border-top: calc(0.22 * var(--bird-base)) solid currentcolor;
+ border-bottom: calc(0.22 * var(--bird-base)) solid currentcolor;
+ width: var(--bird-base);
+ box-shadow: calc(0.25 * var(--bird-base)) calc(0.5 * var(--bird-base)) 0 0 currentcolor, calc(0.25 * var(--bird-base)) calc(0.9 * var(--bird-base)) 0 0 currentcolor, calc(0.25 * var(--bird-base)) calc(1.1 * var(--bird-base)) 0 0 currentcolor, calc(0.45 * var(--bird-base)) calc(2.5 * var(--bird-base)) 0 calc(-0.125 * var(--bird-base)) currentcolor;
+}
+.featured .bird {
+ transform: translateX(calc(-1 * var(--bird-base))) translateY(calc(-1.5 * var(--bird-base))) rotateY(180deg);
+}
+.mush-li, .cloud-li {
+ background: var(--fox);
+}
+.featured .flo-li {
+ background: var(--green);
+ border-color: var(--green);
+ z-index: 1;
+}
+.mushroom {
+ color: var(--light);
+ height: calc(2 * var(--mushroom-base));
+ width: calc(0.7 * var(--mushroom-base));
+ background: currentcolor;
+ border-radius: 50% 50% calc(0.2 * var(--mushroom-base)) calc(0.2 * var(--mushroom-base)) / 100% 100% calc(0.2 * var(--mushroom-base)) calc(0.2 * var(--mushroom-base));
+}
+.mushroom:before {
+ left: 50%;
+ transform: translateX(-50%);
+ top: 0;
+ border-bottom: calc(0.5 * var(--mushroom-base)) solid transparent;
+ border-left: calc(0.5 * var(--mushroom-base)) solid currentcolor;
+ border-right: calc(0.5 * var(--mushroom-base)) solid currentcolor;
+ height: calc(0.5 * var(--mushroom-base));
+}
+.mushroom:after {
+ color: var(--leaf);
+ width: calc(3.2 * var(--mushroom-base));
+ height: calc(1.6 * var(--mushroom-base));
+ background: currentcolor;
+ border-radius: 50% 50% 50% 50%/ 75% 75% 22% 22%;
+ top: calc(-1.5 * var(--mushroom-base));
+ left: 50%;
+ transform: translateX(-50%);
+}
+.featured .mushroom {
+ transform: translateX(calc(-0.1 * var(--mushroom-base))) translateY(calc(-0.15 * var(--wolf-base)));
+}
+.deer {
+ color: var(--leaf);
+ background: currentcolor;
+ width: var(--deer-base);
+ height: calc(1.5 * var(--deer-base));
+ border-radius: 100% 100% calc(0.1 * var(--deer-base)) calc(0.5 * var(--deer-base)) / calc(0.5 * var(--deer-base)) calc(0.5 * var(--deer-base)) calc(0.1 * var(--deer-base)) calc(0.5 * var(--deer-base));
+ box-shadow: calc(0.25 * var(--deer-base)) calc(1.2 * var(--deer-base)) 0 calc(-0.25 * var(--deer-base)), calc(0.25 * var(--deer-base)) calc(-0.5 * var(--deer-base)) 0 calc(-0.4 * var(--deer-base)), calc(-0.25 * var(--deer-base)) calc(-0.5 * var(--deer-base)) 0 calc(-0.4 * var(--deer-base)), calc(0.1 * var(--deer-base)) calc(3.25 * var(--deer-base)) 0 calc(-0.35 * var(--deer-base)), calc(0 * var(--deer-base)) calc(4 * var(--deer-base)) 0 calc(-0.35 * var(--deer-base)), calc(0.55 * var(--deer-base)) calc(3.25 * var(--deer-base)) 0 calc(-0.35 * var(--deer-base)), calc(0.55 * var(--deer-base)) calc(4 * var(--deer-base)) 0 calc(-0.35 * var(--deer-base)), calc(1.5 * var(--deer-base)) calc(3.25 * var(--deer-base)) 0 calc(-0.35 * var(--deer-base)), calc(1.5 * var(--deer-base)) calc(4 * var(--deer-base)) 0 calc(-0.35 * var(--deer-base)), calc(1.85 * var(--deer-base)) calc(3.25 * var(--deer-base)) 0 calc(-0.35 * var(--deer-base)), calc(1.95 * var(--deer-base)) calc(4 * var(--deer-base)) 0 calc(-0.35 * var(--deer-base));
+}
+.deer:before {
+ top: calc(0 * var(--deer-base));
+ left: calc(-0.75 * var(--deer-base));
+ border-top: calc(0.4 * var(--deer-base)) solid transparent;
+ border-left: calc(0.8 * var(--deer-base)) solid;
+ border-right: calc(0.8 * var(--deer-base)) solid;
+ width: calc(2.5 * var(--deer-base));
+ height: calc(0.9 * var(--deer-base));
+ border-radius: calc(0.45 * var(--deer-base));
+ box-shadow: calc(1 * var(--deer-base)) calc(2.56 * var(--deer-base)) 0 calc(0.2 * var(--deer-base));
+}
+.deer:after {
+ color: wheat;
+ width: calc(0.15 * var(--deer-base));
+ height: calc(0.15 * var(--deer-base));
+ background: currentcolor;
+ border-radius: 50%;
+ top: calc(0.7 * var(--deer-base));
+ left: calc(0.15 * var(--deer-base));
+ box-shadow: calc(0.25 * var(--deer-base)) 0 0 calc(0 * var(--deer-base)), calc(1.1 * var(--deer-base)) calc(1.7 * var(--deer-base)) 0 calc(-0.02 * var(--deer-base)), calc(1.3 * var(--deer-base)) calc(1.9 * var(--deer-base)) 0 calc(-0.03 * var(--deer-base)), calc(1.5 * var(--deer-base)) calc(1.7 * var(--deer-base)) 0 calc(-0.04 * var(--deer-base)), calc(1.85 * var(--deer-base)) calc(1.7 * var(--deer-base)) 0 calc(-0.04 * var(--deer-base)), calc(1.65 * var(--deer-base)) calc(1.9 * var(--deer-base)) 0 calc(-0.04 * var(--deer-base)), calc(2.8 * var(--deer-base)) calc(1.9 * var(--deer-base)) 0 calc(0.1 * var(--deer-base)) var(--white);
+}
+.featured .deer {
+ transform: translateX(calc(-1.2 * var(--deer-base))) translateY(calc(-2.5 * var(--deer-base)));
+}
+.wolf {
+ color: var(--leaf);
+ width: calc(2.25 * var(--wolf-base));
+ height: var(--wolf-base);
+ border-radius: 0 0 100% 0Array/0Array 0 calc(0.8 * var(--wolf-base)) 0;
+ background: currentcolor;
+ box-shadow: calc(-0.5 * var(--wolf-base)) calc(-1 * var(--wolf-base)) 0 calc(-0.2 * var(--wolf-base)) currentcolor, calc(0.95 * var(--wolf-base)) calc(-0.3 * var(--wolf-base)) 0 calc(-0.3 * var(--wolf-base)) currentcolor;
+}
+.wolf:after {
+ left: calc(0.2 * var(--wolf-base));
+ width: calc(0.12 * var(--wolf-base));
+ height: calc(0.12 * var(--wolf-base));
+ background: wheat;
+ border-radius: 50%;
+ top: calc(-0.7 * var(--wolf-base));
+ box-shadow: calc(0.2 * var(--wolf-base)) 0 0 wheat, calc(1.3 * var(--wolf-base)) calc(-0.1 * var(--wolf-base)) 0 calc(0.1 * var(--wolf-base)) currentcolor;
+}
+.wolf:before {
+ left: calc(-0.33 * var(--wolf-base));
+ top: calc(-1.3 * var(--wolf-base));
+ border-top: calc(0.45 * var(--wolf-base)) solid transparent;
+ border-left: calc(0.55 * var(--wolf-base)) solid currentcolor;
+ border-right: calc(0.4 * var(--wolf-base)) solid currentcolor;
+ height: calc(2 * var(--wolf-base));
+ box-shadow: calc(-0.3 * var(--wolf-base)) calc(1.6 * var(--wolf-base)) 0 calc(-0.3 * var(--wolf-base)) currentcolor, calc(0.3 * var(--wolf-base)) calc(1.6 * var(--wolf-base)) 0 calc(-0.3 * var(--wolf-base)) currentcolor, calc(1.93 * var(--wolf-base)) calc(1.1 * var(--wolf-base)) 0 calc(-0.3 * var(--wolf-base)) currentcolor, calc(1.93 * var(--wolf-base)) calc(1.6 * var(--wolf-base)) 0 calc(-0.3 * var(--wolf-base)) currentcolor, calc(1.53 * var(--wolf-base)) calc(1.6 * var(--wolf-base)) 0 calc(-0.3 * var(--wolf-base)) currentcolor;
+}
+.featured .wolf {
+ transform: translateX(calc(-1.25 * var(--wolf-base))) translateY(calc(-0.5 * var(--wolf-base))) rotateY(180deg);
+}
+.fox {
+ bottom: calc(0.6 * var(--fox-base));
+ color: var(--fox);
+ width: calc(2.25 * var(--fox-base));
+ height: var(--fox-base);
+ border-radius: 0 0 100% 0Array/0Array 0 calc(0.8 * var(--fox-base)) 0;
+ background: currentcolor;
+ box-shadow: calc(-0.5 * var(--fox-base)) calc(-1 * var(--fox-base)) 0 calc(-0.3 * var(--fox-base)) currentcolor, calc(1.9 * var(--fox-base)) calc(-0.3 * var(--fox-base)) 0 calc(-0.3 * var(--fox-base)) currentcolor;
+}
+.fox:after {
+ left: calc(0.2 * var(--fox-base));
+ width: calc(0.12 * var(--fox-base));
+ height: calc(0.12 * var(--fox-base));
+ background: wheat;
+ border-radius: 50%;
+ top: calc(-0.7 * var(--fox-base));
+ box-shadow: calc(0.2 * var(--fox-base)) 0 0 wheat, calc(1.3 * var(--fox-base)) calc(-0.1 * var(--fox-base)) 0 calc(0.08 * var(--fox-base)) currentcolor;
+}
+.fox:before {
+ left: calc(-0.3 * var(--fox-base));
+ top: calc(-1.3 * var(--fox-base));
+ border-top: calc(0.45 * var(--fox-base)) solid transparent;
+ border-left: calc(0.55 * var(--fox-base)) solid currentcolor;
+ border-right: calc(0.4 * var(--fox-base)) solid currentcolor;
+ height: calc(2 * var(--fox-base));
+ box-shadow: calc(-0.32 * var(--fox-base)) calc(1.2 * var(--fox-base)) 0 calc(-0.32 * var(--fox-base)) currentcolor, calc(0.32 * var(--fox-base)) calc(1.2 * var(--fox-base)) 0 calc(-0.32 * var(--fox-base)) currentcolor, calc(1.93 * var(--fox-base)) calc(1.1 * var(--fox-base)) 0 calc(-0.32 * var(--fox-base)) currentcolor, calc(1.93 * var(--fox-base)) calc(1.2 * var(--fox-base)) 0 calc(-0.32 * var(--fox-base)) currentcolor, calc(1.53 * var(--fox-base)) calc(1.2 * var(--fox-base)) 0 calc(-0.32 * var(--fox-base)) currentcolor;
+}
+.featured .fox {
+ transform: translateX(calc(-1.75 * var(--fox-base))) translateY(calc(-0.25 * var(--fox-base)));
+}
+.pine {
+ color: var(--green);
+ height: calc(5 * var(--pine-base));
+ width: var(--pine-base);
+ background: currentcolor;
+}
+.pine:before {
+ width: 50%;
+ height: var(--pine-base);
+ background: currentcolor;
+ bottom: calc(0.5 * var(--pine-base));
+ left: calc(0.5 * var(--pine-base));
+ border-radius: calc(0.15 * var(--pine-base)) calc(0.25 * var(--pine-base)) 0 0;
+ transform: rotate(40deg);
+ transform-origin: bottom right;
+}
+.pine:after {
+ bottom: 100%;
+ left: calc(-2.5 * var(--pine-base));
+ width: 0;
+ height: 0px;
+ border-left: calc(3 * var(--pine-base)) solid transparent;
+ border-right: calc(3 * var(--pine-base)) solid transparent;
+ border-bottom: calc(4 * var(--pine-base)) solid currentcolor;
+ filter: drop-shadow(0 calc(1.5 * var(--pine-base)) 0 currentcolor) drop-shadow(0 calc(1.5 * var(--pine-base)) 0 currentcolor);
+}
+.featured .pine {
+ transform: translateX(calc(-0.5 * var(--pine-base))) translateY(calc(-0.5 * var(--pine-base)));
+}
+.apple {
+ color: var(--green);
+ border-left: calc(0.1 * var(--apple-base)) solid transparent;
+ border-right: calc(0.1 * var(--apple-base)) solid transparent;
+ border-top: calc(0.5 * var(--apple-base)) solid currentcolor;
+}
+.apple:before, .apple:after {
+ left: calc(-0.55 * var(--apple-base));
+ width: calc(1.5 * var(--apple-base));
+ height: calc(1.8 * var(--apple-base));
+ background: currentcolor;
+ border-radius: 50% 50% 30% 30% / var(--apple-base) var(--apple-base) 30% 30%;
+ transform: rotate(-32deg);
+ transform-origin: 0 100%;
+}
+.apple:after {
+ transform: translateX(calc(-0.4 * var(--apple-base))) rotate(32deg);
+ transform-origin: 100% 100%;
+}
+.featured .apple {
+ transform: translateX(calc(-0.125 * var(--apple-base))) translateY(calc(-1 * var(--apple-base)));
+}
+.featured .apples {
+ transform: translateX(calc(-0.75 * var(--apple-base))) translateY(calc(-1 * var(--apple-base)));
+ filter: drop-shadow(calc(1.5 * var(--apple-base)) 0 0 var(--leaf));
+}
+.apples {
+ color: var(--fox);
+}
+.cloud {
+ color: var(--light);
+}
+.cloud, .cloud:before, .cloud:after {
+ width: var(--cloud-base);
+ height: calc(1.1 * var(--cloud-base));
+ background: currentcolor;
+ border-radius: 50% 50% 0% 0% / 100% 100% 0% 0%;
+}
+.cloud:before, .cloud:after {
+ transform-origin: right bottom;
+ color: inherit;
+}
+.cloud:before {
+ transform: translate3d(calc(0.8 * var(--cloud-base)), 0, 0) scale(1.2);
+}
+.cloud:after {
+ transform: translate3d(calc(1.25 * var(--cloud-base)), 0, 0) scale(0.8);
+}
+.featured .cloud {
+ transform: translateX(calc(-1.3 * var(--cloud-base))) translateY(calc(-0.75 * var(--cloud-base)));
+}
+.flower {
+ color: var(--flower);
+ border-top: calc(0.5 * var(--flower-base)) solid transparent;
+ border-left: calc(0.5 * var(--flower-base)) solid currentcolor;
+ border-right: calc(0.5 * var(--flower-base)) solid currentcolor;
+ height: calc(1.25 * var(--flower-base));
+ width: 0;
+ border-radius: 50% / 50% 50% 50% 50%;
+ box-shadow: 0 calc(-0.5 * var(--flower-base)) 0 calc(-0.35 * var(--flower-base)) currentcolor;
+ filter: drop-shadow(calc(2 * var(--flower-base)) 0 0 currentcolor);
+}
+.flower:before {
+ width: 2px;
+ height: calc(4.5 * var(--flower-base));
+ background: currentcolor;
+ top: calc(-0.5 * var(--flower-base));
+ left: -1px;
+ z-index: -10;
+}
+.flower:after {
+ border-top: var(--flower-base) solid transparent;
+ border-left: calc(0.8 * var(--flower-base)) solid currentcolor;
+ border-right: calc(0.8 * var(--flower-base)) solid currentcolor;
+ height: calc(1.2 * var(--flower-base));
+ width: 0;
+ left: 50%;
+ margin: auto 0 0 calc(-0.8 * var(--flower-base));
+ top: calc(0.8 * var(--flower-base));
+ border-radius: 0 0 calc(0.125 * var(--flower-base)) calc(0.125 * var(--flower-base));
+ filter: drop-shadow(0 calc(1.4 * var(--flower-base)) 0 currentcolor);
+}
+.bear {
+ width: calc(3 * var(--bear-base));
+ height: calc(3.4 * var(--bear-base));
+ color: var(--bear);
+ background: currentcolor;
+ margin: 0 calc(-1.5 * var(--bear-base));
+ border-radius: 50% 100% 0 0;
+}
+.bear:after {
+ color: var(--light);
+ width: calc(0.1 * var(--bear-base));
+ height: calc(0.1 * var(--bear-base));
+ background: currentcolor;
+ border-radius: 50%;
+ left: calc(0.45 * var(--bear-base));
+ top: calc(-0.5 * var(--bear-base));
+ position: absolute;
+ box-shadow: calc(0.72 * var(--bear-base)) 0 0 0 currentcolor, calc(0.375 * var(--bear-base)) calc(0.7 * var(--bear-base)) 0 calc(0.1 * var(--bear-base)) var(--bear), calc(-0.47 * var(--bear-base)) calc(-0.55 * var(--bear-base)) 0 calc(0.225 * var(--bear-base)) var(--bear), calc(1.4 * var(--bear-base)) calc(-0.55 * var(--bear-base)) 0 calc(0.225 * var(--bear-base)) var(--bear);
+}
+.bear:before {
+ width: calc(0.5 * var(--bear-base));
+ left: calc(0.6 * var(--bear-base));
+ top: calc(-0.6 * var(--bear-base));
+ color: wheat;
+ background: var(--bear);
+ border-bottom: var(--bear-base) solid currentcolor;
+ border-left: calc(0.125 * var(--bear-base)) solid transparent;
+ border-right: calc(0.125 * var(--bear-base)) solid transparent;
+ box-shadow: 0 calc(0.3 * var(--bear-base)) 0 calc(0.6 * var(--bear-base)) var(--bear);
+}
+.featured .bear {
+ transform: translateX(calc(-0.125 * var(--bear-base))) translateY(calc(-0.5 * var(--bear-base)));
+}
+.owl {
+ --light: wheat;
+ --bear: #5d4037;
+ --owl-base: 7vw;
+ position: absolute;
+ width: var(--owl-base);
+ height: calc(1.7 * var(--owl-base));
+ color: var(--leaf);
+ background: currentcolor;
+ border-radius: 0 0 0 100Array/0Array 0 0 50%;
+ box-shadow: calc(0.35 * var(--owl-base)) calc(0.65 * var(--owl-base)) 0 calc(-0.4 * var(--owl-base)), calc(0.13 * var(--owl-base)) calc(0.55 * var(--owl-base)) 0 calc(-0.4 * var(--owl-base)), calc(-0.09 * var(--owl-base)) calc(0.4 * var(--owl-base)) 0 calc(-0.4 * var(--owl-base));
+}
+.owl:before, .owl:after {
+ content: "";
+ box-sizing: border-box;
+ position: absolute;
+}
+.owl:before {
+ left: calc(0.12 * var(--owl-base));
+ top: calc(0.25 * var(--owl-base));
+ width: calc(0.3 * var(--owl-base));
+ height: calc(0.3 * var(--owl-base));
+ border-radius: 50%;
+ background: currentcolor;
+ box-shadow: 0 0 0 calc(0.08 * var(--owl-base)) var(--light), calc(0.45 * var(--owl-base)) 0 0, calc(0.45 * var(--owl-base)) 0 0 calc(0.08 * var(--owl-base)) var(--light), calc(0.23 * var(--owl-base)) 0 0 calc(0.4 * var(--owl-base));
+}
+.owl:after {
+ top: calc(0.55 * var(--owl-base));
+ left: calc(0.435 * var(--owl-base));
+ width: 0;
+ height: 0;
+ border-left: calc(0.06 * var(--owl-base)) solid transparent;
+ border-right: calc(0.06 * var(--owl-base)) solid transparent;
+ border-top: calc(0.1 * var(--owl-base)) solid var(--light);
+}
+.featured .owl {
+ transform: translateX(calc(-0.5 * var(--owl-base))) translateY(calc(-0.85 * var(--owl-base)));
+}
+.flower {
+ position: absolute;
+ color: var(--flower);
+ border-top: calc(0.5 * var(--flower-base)) solid transparent;
+ border-left: calc(0.5 * var(--flower-base)) solid currentcolor;
+ border-right: calc(0.5 * var(--flower-base)) solid currentcolor;
+ height: calc(1.25 * var(--flower-base));
+ width: 0;
+ border-radius: 50% / 50% 50% 50% 50%;
+ box-shadow: 0 calc(-0.5 * var(--flower-base)) 0 calc(-0.35 * var(--flower-base)) currentcolor;
+ filter: drop-shadow(calc(2 * var(--flower-base)) 0 0 currentcolor);
+}
+.flower:before, .flower:after {
+ content: "";
+ box-sizing: border-box;
+ position: absolute;
+}
+.flower:before {
+ width: 2px;
+ height: calc(4.5 * var(--flower-base));
+ background: currentcolor;
+ top: calc(-0.5 * var(--flower-base));
+ left: -1px;
+ z-index: -10;
+}
+.flower:after {
+ border-top: var(--flower-base) solid transparent;
+ border-left: calc(0.8 * var(--flower-base)) solid currentcolor;
+ border-right: calc(0.8 * var(--flower-base)) solid currentcolor;
+ height: calc(1.2 * var(--flower-base));
+ width: 0;
+ left: 50%;
+ margin: auto 0 0 calc(-0.8 * var(--flower-base));
+ top: calc(0.8 * var(--flower-base));
+ border-radius: 0 0 calc(0.125 * var(--flower-base)) calc(0.125 * var(--flower-base));
+ filter: drop-shadow(0 calc(1.4 * var(--flower-base)) 0 currentcolor);
+}
+.featured .flower {
+ transform: translateX(calc(-1.5 * var(--flower-base))) translateY(calc(-1.75 * var(--flower-base)));
+}
+.squirrel {
+ position: absolute;
+ color: var(--fox);
+ width: calc(1 * var(--sq-base));
+ height: calc(1.35 * var(--sq-base));
+ background: currentcolor;
+ border-radius: 80% 0 80% 0 / 80% 0 80% 0;
+ box-shadow: 0 calc(-0.27 * var(--sq-base)) 0, 0 calc(-0.54 * var(--sq-base)) 0, 0 calc(-0.81 * var(--sq-base)) 0, calc(-1.6 * var(--sq-base)) calc(-0.6 * var(--sq-base)) 0 calc(-0.25 * var(--sq-base)), calc(-1.62 * var(--sq-base)) calc(-0.6 * var(--sq-base)) 0 calc(-0.25 * var(--sq-base)), calc(-1.64 * var(--sq-base)) calc(-0.6 * var(--sq-base)) 0 calc(-0.25 * var(--sq-base)), calc(-1.66 * var(--sq-base)) calc(-0.6 * var(--sq-base)) 0 calc(-0.25 * var(--sq-base)), calc(-1.68 * var(--sq-base)) calc(-0.6 * var(--sq-base)) 0 calc(-0.25 * var(--sq-base));
+}
+.squirrel:before {
+ bottom: 0;
+ left: -100%;
+ width: 0;
+ height: 0;
+ border-bottom: calc(2 * var(--sq-base)) solid;
+ border-right: var(--sq-base) solid transparent;
+ filter: drop-shadow(calc(0.1 * var(--sq-base)) 0 0);
+}
+.squirrel:after {
+ left: calc(-1.53 * var(--sq-base));
+ width: calc(0.15 * var(--sq-base));
+ height: calc(0.15 * var(--sq-base));
+ background: currentcolor;
+ top: calc(0.35 * var(--sq-base));
+ border-radius: 50%;
+ box-shadow: calc(0.45 * var(--sq-base)) calc(0.2 * var(--sq-base)) 0 calc(0.05 * var(--sq-base)), calc(0.12 * var(--sq-base)) calc(-0.3 * var(--sq-base)) 0 calc(-0.025 * var(--sq-base)) var(--light), calc(0.26 * var(--sq-base)) calc(-0.3 * var(--sq-base)) 0 calc(-0.025 * var(--sq-base)) var(--light), calc(2.5 * var(--sq-base)) calc(-0.46 * var(--sq-base)) 0 calc(0.7 * var(--sq-base));
+}
+.featured .squirrel {
+ transform: translateX(calc(-0.8 * var(--sq-base))) translateY(calc(-0.5 * var(--sq-base))) rotateY(180deg);
+}
+.cat {
+ position: absolute;
+ color: var(--leaf);
+ background: currentcolor;
+ width: var(--cat-base);
+ height: var(--cat-base);
+ border-radius: 0 calc(0.5 * var(--cat-base)) 0 calc(0.1 * var(--cat-base));
+ box-shadow: calc(0.125 * var(--cat-base)) 0 0 currentcolor, calc(-0.25 * var(--cat-base)) calc(-0.55 * var(--cat-base)) 0 calc(-0.25 * var(--cat-base)) currentcolor, calc(0.68 * var(--cat-base)) calc(0.42 * var(--cat-base)) 0 calc(-0.42 * var(--cat-base)) currentcolor, calc(0.76 * var(--cat-base)) calc(0.42 * var(--cat-base)) 0 calc(-0.42 * var(--cat-base)) currentcolor, calc(0.86 * var(--cat-base)) calc(0.42 * var(--cat-base)) 0 calc(-0.42 * var(--cat-base)) currentcolor, calc(0.96 * var(--cat-base)) calc(0.42 * var(--cat-base)) 0 calc(-0.42 * var(--cat-base)) currentcolor, calc(1.06 * var(--cat-base)) calc(0.42 * var(--cat-base)) 0 calc(-0.42 * var(--cat-base)) currentcolor, calc(1.06 * var(--cat-base)) calc(0.32 * var(--cat-base)) 0 calc(-0.42 * var(--cat-base)) currentcolor;
+}
+.cat:before, .cat:after {
+ content: "";
+ box-sizing: border-box;
+ position: absolute;
+}
+.cat:before, .cat:after {
+ top: calc(-0.45 * var(--cat-base));
+}
+.cat:before {
+ border-left: calc(0.25 * var(--cat-base)) solid currentcolor;
+ border-bottom: 0 solid transparent;
+ border-top: calc(0.25 * var(--cat-base)) solid transparent;
+ height: calc(0.25 * var(--cat-base));
+}
+.cat:after {
+ left: calc(0.125 * var(--cat-base));
+ border-right: calc(0.25 * var(--cat-base)) solid currentcolor;
+ border-bottom: 0 solid transparent;
+ border-top: calc(0.25 * var(--cat-base)) solid transparent;
+ height: calc(0.25 * var(--cat-base));
+}
+.featured .cat {
+ transform: translateX(calc(-0.75 * var(--cat-base))) translateY(calc(0 * var(--cat-base)));
+}
+.featured .cats {
+ color: var(--leaf);
+ transform: translateX(calc(-1 * var(--cat-base))) translateY(calc(0 * var(--cat-base)));
+ filter: drop-shadow(calc(0.6 * var(--cat-base)) 0 0 var(--light));
+}
+.cloud-li {
+ z-index: 1;
+}
+.wolf-li, .deer-li, .cat-li, .bird-li, .fox-li, .apples-li {
+ z-index: 2;
+}
+.mush-li, .apple-li {
+ z-index: 3;
+}
+.cloud-li div, .bird-li div {
+ transition: transform 0.6s;
+}
+.hover .featured li {
+ border-color: transparent;
+ background: transparent;
+ transition: transform 0.5s, border 0.3s 0s;
+}
+.hover .cloud {
+ color: white;
+}
+.hover .bear-li {
+ transform: translate3d(0.5vw, -10.5vw, 0) scale(1.8);
+}
+.hover .cloud-li .cloud-1 {
+ transform: translate3d(-25vw, -15vw, 0) scale(0.8) translateX(calc(-1.3 * var(--cloud-base))) translateY(calc(-0.75 * var(--cloud-base)));
+}
+.hover .cloud-li .cloud-2 {
+ transform: translate3d(-10vw, -20vw, 0) scale(1.2) translateX(calc(-1.3 * var(--cloud-base))) translateY(calc(-0.75 * var(--cloud-base)));
+}
+.hover .cloud-li .cloud-3 {
+ transform: translate3d(4vw, -10vw, 0) scale(1.2) translateX(calc(-1.3 * var(--cloud-base))) translateY(calc(-0.75 * var(--cloud-base)));
+}
+.hover .cloud-li .cloud-4 {
+ transform: translate3d(19vw, -20vw, 0) scale(0.8) translateX(calc(-1.3 * var(--cloud-base))) translateY(calc(-0.75 * var(--cloud-base)));
+}
+.hover .cloud-li .cloud-5 {
+ transform: translate3d(32vw, 0, 0) scale(1.5) translateX(calc(-1.3 * var(--cloud-base))) translateY(calc(-0.75 * var(--cloud-base)));
+}
+.hover .cloud-li .bush-1 {
+ color: #4f5d41;
+ transform: translate3d(11vw, 29vw, 0) scale(3.2) translateX(calc(-1.3 * var(--cloud-base))) translateY(calc(-0.75 * var(--cloud-base)));
+ z-index: 2;
+}
+.hover .cloud-li .bush-2 {
+ color: var(--green);
+ transform: translate3d(32vw, 27.6vw, 0) scale(4) translateX(calc(-1.3 * var(--cloud-base))) translateY(calc(-0.75 * var(--cloud-base)));
+}
+.hover .pine-li {
+ transform: translate3d(-0.75vw, 8vw, 0) scale(2.6);
+}
+.hover .wolf-li {
+ transform: translate3d(-29vw, 43vw, 0) scale(0.9);
+}
+.hover .fox-li {
+ transform: translate3d(-32vw, 44vw, 0) scale(1.1);
+}
+.hover .owl-li {
+ transform: translate3d(-34vw, -3vw, 0) scale(0.55);
+}
+.hover .deer-li {
+ transform: translate3d(64vw, 18vw, 0) scale(1.1);
+ --white: var(--light);
+}
+.hover .squirrel-li {
+ transform: translate3d(-50vw, -17.5vw, 0) scale(0.6);
+}
+.hover .mush-li {
+ transform: translate3d(-34vw, 47vw, 0) scale(0.45);
+ --leaf: var(--fox);
+}
+.hover .flo-li {
+ transform: translate3d(34vw, 2.5vw, 0) scale(0.8);
+}
+.hover .cat-li {
+ transform: translate3d(40.5vw, 0.5vw, 0) scale(1);
+}
+.hover .bird-li .bird-1 {
+ transform: translate3d(80vw, 43vw, 0) scale(0.55) translateX(calc(-1 * var(--bird-base))) translateY(calc(-1.5 * var(--bird-base))) rotateY(180deg);
+}
+.hover .bird-li .bird-2 {
+ --light: var(--green);
+ color: wheat;
+ transform: translate3d(74vw, 44vw, 0) scale(0.35) translateX(calc(-1 * var(--bird-base))) translateY(calc(-1.5 * var(--bird-base))) rotateY(180deg);
+}
+.hover .bird-li .bird-3 {
+ --light: var(--green);
+ color: wheat;
+ transform: translate3d(70vw, 44vw, 0) scale(0.35) translateX(calc(-1 * var(--bird-base))) translateY(calc(-1.5 * var(--bird-base))) rotateY(180deg);
+}
+.hover .apples-li {
+ transform: translate3d(-20vw, 45.5vw, 0) scale(0.8);
+}
+.hover .apple-li {
+ transform: translate3d(-46vw, 26.5vw, 0) scale(0.6);
+}
+footer {
+ text-align: center;
+}
+button {
+ font-family: "Holtwood One SC", serif;
+ font-size: 2rem;
+ margin-top: 2rem;
+ background: transparent;
+ border: 3px solid;
+ color: var(--leaf);
+ cursor: pointer;
+ transition: 0.6s;
+}
+button:hover {
+ color: var(--fox);
+}
+button:focus {
+ outline: 2px dashed;
+ outline-offset: 2px;
+}
+
+  </style>
+  <body>
+    <h3 id="t"></h3>
+    <ul class="featured">
+      <li class="bird-li">
+        <div class="bird bird-1"></div>
+        <div class="bird bird-2"></div>
+        <div class="bird bird-3"></div>
+      </li>
+      <li class="apples-li">
+        <div class="apple apples"></div>
+      </li>
+      <li class="wolf-li">
+        <div class="wolf"></div>
+      </li>
+      <li class="fox-li">
+        <div class="fox"></div>
+      </li>
+      <li class="mush-li">
+        <div class="mushroom"></div>
+      </li>
+      <li class="deer-li">
+        <div class="deer"></div>
+      </li>
+      <li class="pine-li">
+        <div class="pine"></div>
+      </li>
+      <li class="cloud-li">
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+        <div class="cloud cloud-4"></div>
+        <div class="cloud cloud-5"></div>
+        <div class="cloud bush-1"></div>
+        <div class="cloud bush-2"></div>
+      </li>
+
+      <li class="owl-li">
+        <div class="owl"></div>
+      </li>
+      <li class="apple-li">
+        <div class="apple"></div>
+      </li>
+      <li class="cat-li">
+        <div class="cat"></div>
+      </li>
+      <li class="flo-li">
+        <div class="flower"></div>
+      </li>
+      <li class="bear-li">
+        <div class="bear"></div>
+      </li>
+      <li class="squirrel-li">
+        <div class="squirrel"></div>
+      </li>
+    </ul>
+    <footer><button id="click-me">Potii Mowa Kingdom</button>
+    </footer>
+    <script type="text/javascript">
+    const clickMe = document.getElementById("click-me");
+const body = document.querySelector("body");
+clickMe.addEventListener("click", () => {
+  var con=document.querySelector("#click-me").textContent;
+  if(con=="Visit Zoo"){
+      document.querySelector("#click-me").textContent="Punish"
+    document.querySelector("#t").innerHTML="Animal 1 : Potii gadii bday kii inka enii days undhii ra <br> <br> Animal 2 : Repu ey ra birthday <br> <br> Animal 3 : Marii Manaki endhuku ippudu ee tokkalo adv bday specials, pedha panii unnatu <br> <br> All Animals : Laughing out loudly<br> <br> Animal 4 : Ee bday ki ayyana potti gadu height avutadu emo ka <br> <br> Animal 2 : No chance ra  , mana potti gadi inti peru loney undhi .... <br> <br> Animal 3 : Aa chance ravali antey pedhaa plan ey veyalii mana potii gadu <br> <br> Animal 5 (With slow voice) : Rey , aa potti Maharaju garu manam cheppa matalu ani vintunaruu ra <br> <br> Animal 6(With slow voice) : Edho okati cover cheyandhi ra , lekpotha mana panii anthey inka , manalanii cage lo petteystadu malla  <br> <br> All animals (Loud and In their own language) : Adavance Happy Birthday Maharaju garuu 🥳🥳.";
+    window.location.href="#t";
+    return;
+  }
+if (body.classList.contains("hover")) {
+  body.classList.remove("hover");
+} else {
+  body.classList.add("hover");
+}
+
+if(con=="Potii Mowa Kingdom"){
+
+  document.querySelector("#click-me").textContent="Visit Zoo";
+  document.querySelector("#t").innerHTML=" ";
+    return;
+}
+
+else {
+  document.querySelector("#t").innerHTML="All animals <br><br> Ayipoindii antha ayipoindhii anavasram ga potii gadi topic etham, Malla cage lo ki vachasam. <br><br> Inka maharaju garii ki koppam appudu taggudho mana pinaa <br><br> .... <button onclick='op()''>Home</button>"
+  document.querySelector("#click-me").textContent="Potii Mowa Kingdom";
+  window.location.href="#t";
+}
+});
+
+function op() {
+  window.location.href="ind.html";
+}
+
+    </script>
+  </body>
+</html>
